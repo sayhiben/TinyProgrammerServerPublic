@@ -375,6 +375,18 @@ deno_version = 2
 # [edge_runtime.secrets]
 # secret_key = "env(SECRET_VALUE)"
 
+# These functions use TinyBBS device tokens instead of Supabase user JWTs.
+# Register has no token yet; post and rename-device validate the device bearer
+# token inside the function before touching protected rows.
+[functions.register]
+verify_jwt = false
+
+[functions.post]
+verify_jwt = false
+
+[functions.rename-device]
+verify_jwt = false
+
 [analytics]
 enabled = true
 port = 54327
